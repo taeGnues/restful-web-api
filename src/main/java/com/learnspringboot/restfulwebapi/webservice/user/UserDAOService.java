@@ -36,4 +36,9 @@ public class UserDAOService {
 //        Predicate가 하는 건 사용자의 id값이 전달된 인수와 같은지를 확인하는 것.
 //        이 User 목록에서 id값이 같은 사용자 하나만 찾음.
     }
+
+    public void deleteOne(int id){
+        Predicate<? super User> predicate = user -> user.getId().equals(id);
+        users.removeIf(predicate);
+    }
 }
