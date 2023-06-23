@@ -1,10 +1,11 @@
 package com.learnspringboot.restfulwebapi.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@JsonFilter("SomeBeanFilter") // 사용할 필터 설정
 public class SomeBean {
     private String field1;
-    @JsonIgnore
     private String field2;
     private String field3;
 
