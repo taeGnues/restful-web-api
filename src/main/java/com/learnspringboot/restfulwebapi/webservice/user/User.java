@@ -1,13 +1,23 @@
 package com.learnspringboot.restfulwebapi.webservice.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.learnspringboot.restfulwebapi.webservice.post.Post;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity(name = "user_details")
 public class User {
 
+    protected User(){}
+    @Id
+    @GeneratedValue
     private Integer id;
     @Size(min=2, message = "Name Should 2") // 검증조건
     @JsonProperty("user_name") // JSON 커스터마이징
@@ -15,6 +25,18 @@ public class User {
     @Past(message = "plz past")
     @JsonProperty("birth_date") // JSON 커스터마이징
     private LocalDate birthDate;
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 
     public User(Integer id, String name, LocalDate birthDate) {
         this.id = id;
