@@ -1,5 +1,6 @@
 package com.learnspringboot.restfulwebapi.webservice.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -9,8 +10,10 @@ public class User {
 
     private Integer id;
     @Size(min=2, message = "Name Should 2") // 검증조건
+    @JsonProperty("user_name") // JSON 커스터마이징
     private String name;
     @Past(message = "plz past")
+    @JsonProperty("birth_date") // JSON 커스터마이징
     private LocalDate birthDate;
 
     public User(Integer id, String name, LocalDate birthDate) {
